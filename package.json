@@ -1,0 +1,29 @@
+{
+  "name": "lix-rtmprelay",
+  "version": "1.0.0",
+  "description": "rtmp multi relay",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "make-docs": "npx typedoc index.d.ts",
+    "install": "npm --save-dev i typedoc express @types/node",
+    "ffmpeg-test": "node ./examples/ffmpeg.js",
+    "webhook-test": "node ./examples/webhook.js",
+    "apidocs-server": "node ./docs/apiDocServer.js"
+  },
+  "keywords": [
+    "rtmp",
+    "relay",
+    "tcp",
+    "socket",
+    "stream",
+    "lukix"
+  ],
+  "author": "Lukix29",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.9.2",
+    "express": "^4.17.1",
+    "typedoc": "^0.22.3"
+  }
+}
