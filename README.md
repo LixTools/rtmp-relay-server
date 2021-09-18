@@ -1,6 +1,8 @@
 # Lix RTMP Relay Server
 
 [GitHub Repository](https://github.com/LixTools/rtmp-relay-server)
+<br>
+[GitHub Pages](https://lixtools.github.io/rtmp-relay-server/)
 
 ## Installation
 
@@ -29,15 +31,15 @@ const relayServer = new RtmpRelayServer({
 });
 ```
 
-| Property       | Description                           | Type                                                          | Default
-| -------------  | ------------------------------------- | ------------------------------------------------------------- | -------
-| port           | Server listen Port                    | Number                                                        | 1935
-| host           | Server listen Address                 | String                                                        | '0.0.0.0'
-| ingest         | Twitch Ingest Server                  | String                                                        | 'best'
-| pushAllow      | Allowed publish IP(s)                 | RtmpAllowType, String, String[]                               | ```[ '*', 'all', '0.0.0.0' ]```
-| pullAllow      | Allowed play IP(s)                    | RtmpAllowType, String, String[]                               | ```[ 'local', 'localhost', '127.0.0.1', '::1', '::ffff:127.0.0.1' ]```
-| webhook        | [Webhook Docs](#webhook)              | String, [WebhookOptions](docs/interfaces/WebhookOptions.html) | null
-| debug          | verbose console output                | Boolean                         | false
+| Property       | Description                           | Type                                                                                                  | Default
+| -------------  | ------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------
+| port           | Server listen Port                    | Number                                                                                                | 1935
+| host           | Server listen Address                 | String                                                                                                | '0.0.0.0'
+| ingest         | Twitch Ingest Server                  | String                                                                                                | 'best'
+| pushAllow      | Allowed publish IP(s)                 | RtmpAllowType, String, String[]                                                                       | ```[ '*', 'all', '0.0.0.0' ]```
+| pullAllow      | Allowed play IP(s)                    | RtmpAllowType, String, String[]                                                                       | ```[ 'local', 'localhost', '127.0.0.1', '::1', '::ffff:127.0.0.1' ]```
+| webhook        | [Webhook Docs](#webhook)              | String, [WebhookOptions](https://lixtools.github.io/rtmp-relay-server/interfaces/WebhookOptions.html) | null
+| debug          | verbose console output                | Boolean                                                                                               | false
 
 ### Webhook
 
@@ -50,15 +52,15 @@ const relayServer = new RtmpRelayServer({
 | retryInterval  | Interval between retries (ms)         | number                                                        | 5000
 
 If method is 'POST', stream-info is in BODY encoded as JSON(utf8) string<br>
-If method is 'GET',  stream-info is in QUERY flattened and URL-Encoded
+If method is 'GET', stream-info is in QUERY flattened and URL-Encoded
 
 ### Events
 
-[Events Typedef](docs/enums/RtmpRelayEvent.html)
+[Events Typedef](https://lixtools.github.io/rtmp-relay-server/enums/RtmpRelayEvent.html)
 
 ## Api
 
-### [Api Docs](docs)  ( auto generated )
+### [Api Docs](https://lixtools.github.io/rtmp-relay-server/classes/RtmpRelayServer.html)  ( auto generated )
 
 Start simple http server for showing the html Api Docs locally (run 'npm i' before launching the server)
 
