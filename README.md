@@ -90,7 +90,7 @@ relayServer.on("publish", (rtmpSession, isLocal, streamInfo) => {
 });
 
 relayServer.on("donePublish", (rtmpSession, isLocal, streamInfo) => {
-    //stream stopped an relay to twitch closed (e.g. stop ffmpeg recording manually)
+    //stream stopped an relay to twitch closed (e.g. stop ffmpeg recording manually here)
 });
 
 relayServer.on("play", (rtmpSession, isLocal, streamInfo) => {
