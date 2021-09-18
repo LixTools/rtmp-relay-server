@@ -35,7 +35,7 @@ const relayServer = new RtmpRelayServer({
 | -------------  | ------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------
 | port           | Server listen Port                    | Number                                                                                                | 1935
 | host           | Server listen Address                 | String                                                                                                | '0.0.0.0'
-| ingest         | Twitch Ingest Server                  | String                                                                                                | 'best'
+| ingest         | Twitch Ingest Server                  | String                                                                                                | 'best' (autoselects nearest twitch-ingest-server)
 | pushAllow      | Allowed publish IP(s)                 | RtmpAllowType, String, String[]                                                                       | ```[ '*', 'all', '0.0.0.0' ]```
 | pullAllow      | Allowed play IP(s)                    | RtmpAllowType, String, String[]                                                                       | ```[ 'local', 'localhost', '127.0.0.1', '::1', '::ffff:127.0.0.1' ]```
 | webhook        | [Webhook Docs](#webhook)              | String, [WebhookOptions](https://lixtools.github.io/rtmp-relay-server/interfaces/WebhookOptions.html) | null
