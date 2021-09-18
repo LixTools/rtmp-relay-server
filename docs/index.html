@@ -1,51 +1,162 @@
-<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>lix-rtmprelay</title><meta name="description" content="Documentation for lix-rtmprelay"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">lix-rtmprelay</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>lix-rtmprelay</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Lix RTMP Relay Server</title><meta name="description" content="Documentation for Lix RTMP Relay Server"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">Lix RTMP Relay Server</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>Lix RTMP Relay Server</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
 <a href="#lix-rtmp-relay-server" id="lix-rtmp-relay-server" style="color: inherit; text-decoration: none;">
   <h1>Lix RTMP Relay Server</h1>
 </a>
-
-<a href="#features" id="features" style="color: inherit; text-decoration: none;">
-  <h2>Features</h2>
-</a>
-<p>Work in Progress</p>
+<p><a href="https://github.com/LixTools/rtmp-relay-server">GitHub Repository</a></p>
 
 <a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
   <h2>Installation</h2>
 </a>
-<p>Install the dependencies and devDependencies and start the server.</p>
+<p>No external dependencies required for production use.</p>
+
+<a href="#development" id="development" style="color: inherit; text-decoration: none;">
+  <h2>Development</h2>
+</a>
+<p>Install the dev-dependencies.</p>
 <pre><code class="language-sh"><span class="hl-0">npm i</span>
 </code></pre>
 
-<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
-  <h2>Testing</h2>
+<a href="#options" id="options" style="color: inherit; text-decoration: none;">
+  <h2>Options</h2>
 </a>
-<blockquote>
-<p>FFMPEG local recording</p>
-</blockquote>
-<pre><code class="language-sh"><span class="hl-0">npm run ffmpeg_test</span>
+<pre><code class="language-js"><span class="hl-1">// Default options</span><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">relayServer</span><span class="hl-0"> = </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-4">RtmpRelayServer</span><span class="hl-0">({</span><br/><span class="hl-0">    </span><span class="hl-5">port:</span><span class="hl-0"> </span><span class="hl-6">1935</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-5">host:</span><span class="hl-0"> </span><span class="hl-7">&quot;0.0.0.0&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-5">ingest:</span><span class="hl-0"> </span><span class="hl-7">&quot;best&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-5">pushAllow:</span><span class="hl-0"> </span><span class="hl-5">RtmpAllowType</span><span class="hl-0">.</span><span class="hl-5">All</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-5">pullAllow:</span><span class="hl-0"> </span><span class="hl-5">RtmpAllowType</span><span class="hl-0">.</span><span class="hl-5">Local</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-5">webhook:</span><span class="hl-0"> </span><span class="hl-2">null</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-5">debug:</span><span class="hl-0"> </span><span class="hl-2">false</span><br/><span class="hl-0">});</span>
 </code></pre>
-<blockquote>
-<p>or with WebHooks</p>
-</blockquote>
-<pre><code class="language-sh"><span class="hl-0">npm run webhook_test</span>
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>port</td>
+<td>Server listen Port</td>
+<td>Number</td>
+<td>1935</td>
+</tr>
+<tr>
+<td>host</td>
+<td>Server listen Address</td>
+<td>String</td>
+<td>&#39;0.0.0.0&#39;</td>
+</tr>
+<tr>
+<td>ingest</td>
+<td>Twitch Ingest Server</td>
+<td>String</td>
+<td>&#39;best&#39;</td>
+</tr>
+<tr>
+<td>pushAllow</td>
+<td>Allowed publish IP(s)</td>
+<td>RtmpAllowType, String, String[]</td>
+<td><code>[ &#39;*&#39;, &#39;all&#39;, &#39;0.0.0.0&#39; ]</code></td>
+</tr>
+<tr>
+<td>pullAllow</td>
+<td>Allowed play IP(s)</td>
+<td>RtmpAllowType, String, String[]</td>
+<td><code>[ &#39;local&#39;, &#39;localhost&#39;, &#39;127.0.0.1&#39;, &#39;::1&#39;, &#39;::ffff:127.0.0.1&#39; ]</code></td>
+</tr>
+<tr>
+<td>webhook</td>
+<td><a href="#webhook">Webhook Docs</a></td>
+<td>String, <a href="docs/interfaces/WebhookOptions.html">WebhookOptions</a></td>
+<td>null</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>verbose console output</td>
+<td>Boolean</td>
+<td>false</td>
+</tr>
+</tbody></table>
 
-<a href="#api" id="api" style="color: inherit; text-decoration: none;">
-  <h2>Api</h2>
+<a href="#webhook" id="webhook" style="color: inherit; text-decoration: none;">
+  <h3>Webhook</h3>
 </a>
 <table>
 <thead>
 <tr>
+<th>Property</th>
+<th>Description</th>
 <th>Type</th>
-<th>README</th>
+<th>Default</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>HTML</td>
-<td><a href="docs/index.html">Api Docs (auto generated)</a></td>
+<td>url</td>
+<td></td>
+<td>string</td>
+<td>null</td>
 </tr>
 <tr>
-<td>Types</td>
-<td><a href="index.d.ts">Api Type Definitions</a></td>
+<td>method</td>
+<td>Request Method, either POST or GET</td>
+<td>string</td>
+<td>&#39;POST&#39;</td>
+</tr>
+<tr>
+<td>headers</td>
+<td>Extra headers for request</td>
+<td>object</td>
+<td><code>{ &#39;Content-Type&#39;: &#39;application/json&#39; }</code></td>
+</tr>
+<tr>
+<td>retryAmount</td>
+<td>Retry request [n] times</td>
+<td>number</td>
+<td>5</td>
+</tr>
+<tr>
+<td>retryInterval</td>
+<td>Interval between retries (ms)</td>
+<td>number</td>
+<td>5000</td>
 </tr>
 </tbody></table>
-</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/RtmpAllowType.html" class="tsd-kind-icon">Rtmp<wbr/>Allow<wbr/>Type</a></li><li class="tsd-kind-class"><a href="classes/RtmpRelayServer.html" class="tsd-kind-icon">Rtmp<wbr/>Relay<wbr/>Server</a></li><li class="tsd-kind-class"><a href="classes/RtmpSession.html" class="tsd-kind-icon">Rtmp<wbr/>Session</a></li><li class="tsd-kind-class"><a href="classes/Utils.html" class="tsd-kind-icon">Utils</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpAddresses.html" class="tsd-kind-icon">Rtmp<wbr/>Addresses</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpAudioInfo.html" class="tsd-kind-icon">Rtmp<wbr/>Audio<wbr/>Info</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpCodecInfo.html" class="tsd-kind-icon">Rtmp<wbr/>Codec<wbr/>Info</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpRelayOptions.html" class="tsd-kind-icon">Rtmp<wbr/>Relay<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpSessionInfo.html" class="tsd-kind-icon">Rtmp<wbr/>Session<wbr/>Info</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpStreamInfo.html" class="tsd-kind-icon">Rtmp<wbr/>Stream<wbr/>Info</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpVideoInfo.html" class="tsd-kind-icon">Rtmp<wbr/>Video<wbr/>Info</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
+<p>If method is &#39;POST&#39;, stream-info is in body encoded as JSON(utf8) string<br>
+If method ist &#39;GET&#39;, stream-info is appended to url flattened and URL-Encoded</p>
+
+<a href="#events" id="events" style="color: inherit; text-decoration: none;">
+  <h3>Events</h3>
+</a>
+<p><a href="docs/enums/RtmpRelayEvent.html">Events Typedef</a></p>
+
+<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+  <h2>Api</h2>
+</a>
+
+<a href="#api-docs---auto-generated-" id="api-docs---auto-generated-" style="color: inherit; text-decoration: none;">
+  <h3><a href="docs">Api Docs</a>  ( auto generated )</h3>
+</a>
+<p>Start simple http server for showing the html Api Docs locally (run &#39;npm i&#39; before launching the server)</p>
+<pre><code class="language-sh"><span class="hl-0">npm run apidocs-server</span>
+</code></pre>
+
+<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+  <h2>Examples</h2>
+</a>
+<p>Basic Example</p>
+<pre><code class="language-js"><span class="hl-2">const</span><span class="hl-0"> {</span><span class="hl-3">RtmpRelayServer</span><span class="hl-0">, </span><span class="hl-3">RtmpAllowType</span><span class="hl-0">, </span><span class="hl-3">Utils</span><span class="hl-0">} = </span><span class="hl-4">require</span><span class="hl-0">(</span><span class="hl-7">&quot;../index&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">relayServer</span><span class="hl-0"> = </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-4">RtmpRelayServer</span><span class="hl-0">();</span><br/><br/><span class="hl-5">relayServer</span><span class="hl-0">.</span><span class="hl-4">on</span><span class="hl-0">(</span><span class="hl-7">&quot;codec&quot;</span><span class="hl-0">, (</span><span class="hl-5">rtmpSession</span><span class="hl-0">, </span><span class="hl-5">isLocal</span><span class="hl-0">, </span><span class="hl-5">codecInfo</span><span class="hl-0">) </span><span class="hl-2">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-1">//stream video/audio codec infos parsed</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-5">relayServer</span><span class="hl-0">.</span><span class="hl-4">on</span><span class="hl-0">(</span><span class="hl-7">&quot;error&quot;</span><span class="hl-0">, (</span><span class="hl-5">rtmpSession</span><span class="hl-0">, </span><span class="hl-5">isLocal</span><span class="hl-0">, </span><span class="hl-5">error</span><span class="hl-0">) </span><span class="hl-2">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-1">//called on every error (server, socket, session etc...)</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-5">relayServer</span><span class="hl-0">.</span><span class="hl-4">on</span><span class="hl-0">(</span><span class="hl-7">&quot;publish&quot;</span><span class="hl-0">, (</span><span class="hl-5">rtmpSession</span><span class="hl-0">, </span><span class="hl-5">isLocal</span><span class="hl-0">, </span><span class="hl-5">streamInfo</span><span class="hl-0">) </span><span class="hl-2">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-1">//stream started and relay to twitch started (e.g. start ffmpeg recording here)</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-5">relayServer</span><span class="hl-0">.</span><span class="hl-4">on</span><span class="hl-0">(</span><span class="hl-7">&quot;donePublish&quot;</span><span class="hl-0">, (</span><span class="hl-5">rtmpSession</span><span class="hl-0">, </span><span class="hl-5">isLocal</span><span class="hl-0">, </span><span class="hl-5">streamInfo</span><span class="hl-0">) </span><span class="hl-2">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-1">//stream stopped an relay to twitch closed (e.g. stop ffmpeg recording manually)</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-5">relayServer</span><span class="hl-0">.</span><span class="hl-4">on</span><span class="hl-0">(</span><span class="hl-7">&quot;play&quot;</span><span class="hl-0">, (</span><span class="hl-5">rtmpSession</span><span class="hl-0">, </span><span class="hl-5">isLocal</span><span class="hl-0">, </span><span class="hl-5">streamInfo</span><span class="hl-0">) </span><span class="hl-2">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-1">//rtmp client connection (e.g. ffmpeg connects to the server)</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-5">relayServer</span><span class="hl-0">.</span><span class="hl-4">on</span><span class="hl-0">(</span><span class="hl-7">&quot;donePlay&quot;</span><span class="hl-0">, (</span><span class="hl-5">rtmpSession</span><span class="hl-0">, </span><span class="hl-5">isLocal</span><span class="hl-0">, </span><span class="hl-5">streamInfo</span><span class="hl-0">) </span><span class="hl-2">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-1">//rtmp client disconnect (e.g. ffmpeg stops or exits)</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-1">//WebHook (if used) response event </span><br/><span class="hl-1">//if an error ocured, it will retry 5 times</span><br/><span class="hl-5">relayServer</span><span class="hl-0">.</span><span class="hl-4">on</span><span class="hl-0">(</span><span class="hl-7">&quot;webhook&quot;</span><span class="hl-0">, (</span><span class="hl-5">error</span><span class="hl-0">, </span><span class="hl-5">result</span><span class="hl-0">, </span><span class="hl-5">streamInfo</span><span class="hl-0">) </span><span class="hl-2">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-8">if</span><span class="hl-0"> (</span><span class="hl-5">error</span><span class="hl-0">) </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-4">error</span><span class="hl-0">(</span><span class="hl-7">`&lt;WEBHOOK&gt; [</span><span class="hl-2">${</span><span class="hl-5">sessionInfo</span><span class="hl-9">.</span><span class="hl-5">eventType</span><span class="hl-2">}</span><span class="hl-7">]: `</span><span class="hl-0">, </span><span class="hl-5">error</span><span class="hl-0">, </span><span class="hl-5">streamInfo</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-8">else</span><span class="hl-0"> </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-4">log</span><span class="hl-0">(</span><span class="hl-7">`&lt;WEBHOOK&gt; [</span><span class="hl-2">${</span><span class="hl-5">sessionInfo</span><span class="hl-9">.</span><span class="hl-5">eventType</span><span class="hl-2">}</span><span class="hl-7">]: `</span><span class="hl-0">, </span><span class="hl-5">result</span><span class="hl-0">);</span><br/><span class="hl-0">})</span><br/><br/><span class="hl-8">await</span><span class="hl-0"> </span><span class="hl-5">relayServer</span><span class="hl-0">.</span><span class="hl-4">start</span><span class="hl-0">();</span><br/><br/><span class="hl-1">//[optional] ensure Relay-Server ist closed at process exit</span><br/><span class="hl-5">relayServer</span><span class="hl-0">.</span><span class="hl-4">enableProcessExitHandler</span><span class="hl-0">();</span>
+</code></pre>
+
+<a href="#test-scripts" id="test-scripts" style="color: inherit; text-decoration: none;">
+  <h3>Test Scripts</h3>
+</a>
+<p>FFMPEG local recording</p>
+<pre><code class="language-sh"><span class="hl-0">npm run ffmpeg_test</span>
+</code></pre>
+<p>or with WebHooks
+(also starts an example Server at Port 80)</p>
+<pre><code class="language-sh"><span class="hl-0">npm run webhook_test</span>
+</code></pre>
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p><a href="LICENSE">GNU General Public License v3.0</a><br>
+© <a href="https://lix.tools">LixTools</a> (Lukix29) 2021<br></p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/RtmpRelayEvent.html" class="tsd-kind-icon">Rtmp<wbr/>Relay<wbr/>Event</a></li><li class="tsd-kind-enum"><a href="enums/WebhookEvent.html" class="tsd-kind-icon">Webhook<wbr/>Event</a></li><li class="tsd-kind-class"><a href="classes/RtmpAllowType.html" class="tsd-kind-icon">Rtmp<wbr/>Allow<wbr/>Type</a></li><li class="tsd-kind-class"><a href="classes/RtmpRelayServer.html" class="tsd-kind-icon">Rtmp<wbr/>Relay<wbr/>Server</a></li><li class="tsd-kind-class"><a href="classes/RtmpSession.html" class="tsd-kind-icon">Rtmp<wbr/>Session</a></li><li class="tsd-kind-class"><a href="classes/Utils.html" class="tsd-kind-icon">Utils</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpAddresses.html" class="tsd-kind-icon">Rtmp<wbr/>Addresses</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpAudioInfo.html" class="tsd-kind-icon">Rtmp<wbr/>Audio<wbr/>Info</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpCodecInfo.html" class="tsd-kind-icon">Rtmp<wbr/>Codec<wbr/>Info</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpRelayOptions.html" class="tsd-kind-icon">Rtmp<wbr/>Relay<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpSessionInfo.html" class="tsd-kind-icon">Rtmp<wbr/>Session<wbr/>Info</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpStreamInfo.html" class="tsd-kind-icon">Rtmp<wbr/>Stream<wbr/>Info</a></li><li class="tsd-kind-interface"><a href="interfaces/RtmpVideoInfo.html" class="tsd-kind-icon">Rtmp<wbr/>Video<wbr/>Info</a></li><li class="tsd-kind-interface"><a href="interfaces/WebhookOptions.html" class="tsd-kind-icon">Webhook<wbr/>Options</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Types" class="tsd-kind-icon">Types</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>

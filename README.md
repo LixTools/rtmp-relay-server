@@ -1,12 +1,14 @@
 # Lix RTMP Relay Server
 
+[GitHub Repository](https://github.com/LixTools/rtmp-relay-server)
+
 ## Installation
 
 No external dependencies required for production use.
 
 ## Development
 
-Install the Dev-Dependencies.
+Install the dev-dependencies.
 
 ```sh
 npm i
@@ -14,28 +16,64 @@ npm i
 
 ## Options
 
-Work in Progress <sup style="font-size:60%">TM</sup>
+```js
+// Default options
+const relayServer = new RtmpRelayServer({
+    port: 1935,
+    host: "0.0.0.0",
+    ingest: "best",
+    pushAllow: RtmpAllowType.All,
+    pullAllow: RtmpAllowType.Local,
+    webhook: null,
+    debug: false
+});
+```
+
+| Property       | Description                           | Type                                                          | Default
+| -------------  | ------------------------------------- | ------------------------------------------------------------- | -------
+| port           | Server listen Port                    | Number                                                        | 1935
+| host           | Server listen Address                 | String                                                        | '0.0.0.0'
+| ingest         | Twitch Ingest Server                  | String                                                        | 'best'
+| pushAllow      | Allowed publish IP(s)                 | RtmpAllowType, String, String[]                               | ```[ '*', 'all', '0.0.0.0' ]```
+| pullAllow      | Allowed play IP(s)                    | RtmpAllowType, String, String[]                               | ```[ 'local', 'localhost', '127.0.0.1', '::1', '::ffff:127.0.0.1' ]```
+| webhook        | [Webhook Docs](#webhook)              | String, [WebhookOptions](docs/interfaces/WebhookOptions.html) | null
+| debug          | verbose console output                | Boolean                         | false
+
+### Webhook
+
+| Property       | Description                           | Type                                                          | Default
+| -------------  | ------------------------------------- | ------------------------------------------------------------- | -------
+| url            |                                       | string                                                        | null
+| method         | Request Method, either POST or GET    | string                                                        | 'POST'
+| headers        | Extra headers for request             | object                                                        | ```{ 'Content-Type': 'application/json' }```
+| retryAmount    | Retry request [n] times               | number                                                        | 5
+| retryInterval  | Interval between retries (ms)         | number                                                        | 5000
+
+If method is 'POST', stream-info is in BODY encoded as JSON(utf8) string<br>
+If method is 'GET',  stream-info is in QUERY flattened and URL-Encoded
+
+### Events
+
+[Events Typedef](docs/enums/RtmpRelayEvent.html)
+
+## Api
+
+### [Api Docs](docs)  ( auto generated )
+
+Start simple http server for showing the html Api Docs locally (run 'npm i' before launching the server)
+
+```sh
+npm run apidocs-server
+```
 
 ## Examples
 
 Basic Example
 
-    port?: number,
-    host?: string,
-    ingest?: string,
-    pushAllowType?: RtmpAllowType | string | string[],
-    pullAllowType?: RtmpAllowType | string | string[],
-    webhook?: string,
-    webhookMethod?: "GET" | "POST",
-    debug?: false,
-
 ```js
 const {RtmpRelayServer, RtmpAllowType, Utils} = require("../index");
 
-const relayServer = new RtmpRelayServer({
-    pushAllowType: RtmpAllowType.All,
-    pullAllowType: RtmpAllowType.Local
-});
+const relayServer = new RtmpRelayServer();
 
 relayServer.on("codec", (rtmpSession, isLocal, codecInfo) => {
     //stream video/audio codec infos parsed
@@ -89,15 +127,7 @@ or with WebHooks
 npm run webhook_test
 ```
 
-## Api
+## License
 
-| Type          | README
-| ----          | ------
-| HTML          | [Api Docs (auto generated)](docs/index.html)
-| TypeScript    | [Api Definitions](index.d.ts)
-
-Start simple Http-Server for showing HMTL-Api-Docs
-
-```sh
-npm run apidocs-server
-```
+[GNU General Public License v3.0](LICENSE)<br>
+© [LixTools](https://lix.tools) (Lukix29) 2021<br>

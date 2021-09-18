@@ -1,10 +1,14 @@
 import * as Events from "events";
 import {Socket} from "net";
 
+export declare type Types = "undefined" | "object" | "boolean" | "number" | "bigint" | "string" | "symbol" | "function";
+
 export declare class Utils {
     static isDefined(obj: any): boolean;
 
     static hasProp(obj: object, key: string): boolean;
+
+    static isType(obj: any, ...type: Types[]): boolean;
 
     static fetch(url: string, options?: object): Promise<any>;
 
@@ -25,15 +29,48 @@ export declare class RtmpAllowType {
     check(ip: string): boolean;
 }
 
+export declare interface WebhookOptions {
+    url: string,
+    method?: "GET" | "POST",
+    headers?: object,
+    retryAmount?: number,
+    retryInterval?: number
+}
+
 export declare interface RtmpRelayOptions {
     port?: number,
     host?: string,
     ingest?: string,
-    pushAllowType?: RtmpAllowType | string | string[],
-    pullAllowType?: RtmpAllowType | string | string[],
-    webhook?: string,
-    webhookMethod?: "GET" | "POST",
+    pushAllow?: string | string[],
+    pullAllow?: string | string[],
+    webhook?: string | WebhookOptions,
     debug?: false,
+}
+
+export declare enum WebhookEvent {
+    publish = "publish",
+    donePublish = "donePublish",
+    play = "play",
+    donePlay = "donePlay",
+    codec = "codec",
+}
+
+export declare enum RtmpRelayEvent {
+    publish = "publish",
+    play = "play",
+    donePublish = "donePublish",
+    donePlay = "donePlay",
+    socketClose = "socket-close",
+    socketError = "socket-error",
+    socketConnect = "socket-connect",
+    ingestClose = "ingest-close",
+    ingestError = "ingest-error",
+    ingestConnect = "ingest-connect",
+    videoCodec = "videoCodec",
+    audioCodec = "audioCodec",
+    codec = "codec",
+    webhook = "webhook",
+    error = "error",
 }
 
 export declare interface RtmpAddresses {
@@ -72,7 +109,7 @@ export declare interface RtmpCodecInfo {
 }
 
 export declare interface RtmpSessionInfo extends RtmpStreamInfo {
-    eventType?: string,
+    eventType?: WebhookEvent,
     audio?: RtmpAudioInfo;
     video?: RtmpVideoInfo;
 }
@@ -253,29 +290,31 @@ export declare class RtmpRelayServer extends Events {
 
     stop(): Promise<void>;
 
-    enableProcessExitHandler(callback: (error?: Error) => void): (exitCode?: number | string) => void;
+    enableProcessExitHandler(callback?: (error?: Error) => void): (exitCode?: number | string) => void;
 
     get sessions(): Map<string, RtmpSession>;
 
-    on(event: "publish", listener: (rtmpSession: RtmpSession, isLocal: boolean, params?: any[]) => void): this;
+    //on(event: RtmpRelayEvent, listener: (...params: any) => void): this;
 
-    on(event: "play", listener: (rtmpSession: RtmpSession, isLocal: boolean, params?: any[]) => void): this;
+    on(event: "publish", listener: (rtmpSession: RtmpSession, isLocal: boolean, streamInfo: RtmpStreamInfo) => void): this;
 
-    on(event: "socket-close", listener: (socket: Socket, hadError: boolean) => void): this;
+    on(event: "play", listener: (rtmpSession: RtmpSession, isLocal: boolean, streamInfo: RtmpStreamInfo) => void): this;
 
-    on(event: "socket-error", listener: (socket: Socket, error: Error) => void): this;
+    on(event: "socketClose", listener: (socket: Socket, hadError: boolean) => void): this;
 
-    on(event: "socket-connect", listener: (socket: Socket, addresses: RtmpAddresses, rtmpSession: RtmpSession) => void): this;
+    on(event: "socketError", listener: (socket: Socket, error: Error) => void): this;
 
-    on(event: "ingest-close", listener: (socket: Socket, hadError: boolean) => void): this;
+    on(event: "socketConnect", listener: (socket: Socket, addresses: RtmpAddresses, rtmpSession: RtmpSession) => void): this;
 
-    on(event: "ingest-error", listener: (socket: Socket, error: Error) => void): this;
+    on(event: "ingestClose", listener: (socket: Socket, hadError: boolean) => void): this;
 
-    on(event: "ingest-connect", listener: (socket: Socket, addresses: RtmpAddresses) => void): this;
+    on(event: "ingestError", listener: (socket: Socket, error: Error) => void): this;
 
-    on(event: "donePlay", listener: (rtmpSession: RtmpSession, isLocal: boolean, params?: RtmpStreamInfo) => void): this;
+    on(event: "ingestConnect", listener: (socket: Socket, addresses: RtmpAddresses) => void): this;
 
-    on(event: "donePublish", listener: (rtmpSession: RtmpSession, isLocal: boolean, params?: RtmpStreamInfo) => void): this;
+    on(event: "donePlay", listener: (rtmpSession: RtmpSession, isLocal: boolean, streamInfo: RtmpStreamInfo) => void): this;
+
+    on(event: "donePublish", listener: (rtmpSession: RtmpSession, isLocal: boolean, streamInfo: RtmpStreamInfo) => void): this;
 
     on(event: "videoCodec", listener: (rtmpSession: RtmpSession, isLocal: boolean, videoInfo: RtmpVideoInfo) => void): this;
 
@@ -283,7 +322,7 @@ export declare class RtmpRelayServer extends Events {
 
     on(event: "codec", listener: (rtmpSession: RtmpSession, isLocal: boolean, codecInfo: RtmpCodecInfo) => void): this;
 
-    on(event: "webhook", listener: (error: Error, result?: RtmpSessionInfo, streamInfo?: RtmpSessionInfo) => void): this;
+    on(event: "webhook", listener: (error: Error | null, result: object | string | null, streamInfo: RtmpSessionInfo) => void): this;
 
     on(event: "error", listener: (error: Error) => void): this;
 

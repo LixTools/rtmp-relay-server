@@ -1,6 +1,6 @@
 const Express = require("express");
 const Path = require("path");
-const {RtmpRelayServer, RtmpAllowType, Utils} = require("../index");
+const {RtmpRelayServer, RtmpAllowType} = require("../index");
 
 
 const LOGLEVELS = {
@@ -13,7 +13,7 @@ const LogLevel = LOGLEVELS.log;
 function startHttpServer() {
     const app = Express();
 
-    const server = app.listen(80, () => {
+    app.listen(80, () => {
         console.log(`WebHook Http-Server listening at http://localhost`);
     });
 
@@ -34,8 +34,7 @@ function startHttpServer() {
     const relayServer = new RtmpRelayServer({
         pushAllowType: RtmpAllowType.All,
         pullAllowType: RtmpAllowType.Local,
-        webhook: "http://localhost/echo",
-        webhookMethod: "POST",
+        webhook: "http://localhost/echo"
     });
 
     //TODO use this stub for the Webhook Backend
@@ -76,9 +75,9 @@ function startHttpServer() {
         if (LogLevel >= LOGLEVELS.info) console.info(`<DONE-PLAY>: `, streamInfo);
     });
 
-    relayServer.on("webhook", (error, sessionInfo, streamInfo) => {
-        if (error && LogLevel >= LOGLEVELS.error) console.error(`<WEBHOOK-ERROR> [${sessionInfo.eventType}]: `, error, streamInfo);
-        else if (LogLevel >= LOGLEVELS.log) console.log(`<WEBHOOK-RESPONSE> [${sessionInfo.eventType}]: `, sessionInfo);
+    relayServer.on("webhook", (error, result, streamInfo) => {
+        if (error && LogLevel >= LOGLEVELS.error) console.error(`<WEBHOOK-ERROR> [${streamInfo.eventType}]: `, error, streamInfo);
+        else if (LogLevel >= LOGLEVELS.log) console.log(`<WEBHOOK-RESPONSE> [${streamInfo.eventType}]: `, result);
     })
 
     startHttpServer();
